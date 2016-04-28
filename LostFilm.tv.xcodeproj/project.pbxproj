@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8BCF90F91CD28215001FD300 /* FeedParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCF90F61CD28215001FD300 /* FeedParser.swift */; };
+		8BCF90FA1CD28215001FD300 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCF90F71CD28215001FD300 /* TableViewCell.swift */; };
+		8BCF90FB1CD28215001FD300 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCF90F81CD28215001FD300 /* TableViewController.swift */; };
 		E339BC311CD1D87300844F96 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E339BC301CD1D87300844F96 /* AppDelegate.swift */; };
 		E339BC331CD1D87300844F96 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E339BC321CD1D87300844F96 /* ViewController.swift */; };
 		E339BC361CD1D87300844F96 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E339BC341CD1D87300844F96 /* Main.storyboard */; };
@@ -16,6 +19,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8BCF90F61CD28215001FD300 /* FeedParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedParser.swift; sourceTree = "<group>"; };
+		8BCF90F71CD28215001FD300 /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		8BCF90F81CD28215001FD300 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		E339BC2D1CD1D87300844F96 /* LostFilm.tv.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LostFilm.tv.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E339BC301CD1D87300844F96 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E339BC321CD1D87300844F96 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -56,6 +62,9 @@
 		E339BC2F1CD1D87300844F96 /* LostFilm.tv */ = {
 			isa = PBXGroup;
 			children = (
+				8BCF90F61CD28215001FD300 /* FeedParser.swift */,
+				8BCF90F71CD28215001FD300 /* TableViewCell.swift */,
+				8BCF90F81CD28215001FD300 /* TableViewController.swift */,
 				E339BC301CD1D87300844F96 /* AppDelegate.swift */,
 				E339BC321CD1D87300844F96 /* ViewController.swift */,
 				E339BC341CD1D87300844F96 /* Main.storyboard */,
@@ -138,6 +147,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8BCF90FA1CD28215001FD300 /* TableViewCell.swift in Sources */,
+				8BCF90FB1CD28215001FD300 /* TableViewController.swift in Sources */,
+				8BCF90F91CD28215001FD300 /* FeedParser.swift in Sources */,
 				E339BC331CD1D87300844F96 /* ViewController.swift in Sources */,
 				E339BC311CD1D87300844F96 /* AppDelegate.swift in Sources */,
 				E339BC391CD1D87300844F96 /* LostFilm_tv.xcdatamodeld in Sources */,
@@ -288,6 +300,7 @@
 				E339BC441CD1D87300844F96 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

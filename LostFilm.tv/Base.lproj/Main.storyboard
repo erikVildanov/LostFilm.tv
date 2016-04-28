@@ -1,25 +1,97 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="6wM-tZ-9zG">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
+        <!--lostfilm.tv RSS-->
+        <scene sceneID="iH3-ti-nht">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
-                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                <tableViewController id="MWQ-8f-HFY" customClass="TableViewController" customModule="LostFilm_tv" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="112" sectionHeaderHeight="28" sectionFooterHeight="28" id="15E-pn-M4q">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                        <color key="separatorColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="112" id="o6Y-tx-7Vh" customClass="TableViewCell" customModule="LostFilm_tv" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="92" width="600" height="112"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="top" tableViewCell="o6Y-tx-7Vh" id="oSA-il-Kfs">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="111"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LYm-qM-AZ7">
+                                            <rect key="frame" x="7" y="5" width="100" height="100"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="100" id="NrE-Lz-1GL"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="pubDate" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vRj-RF-GTg">
+                                            <rect key="frame" x="115" y="84" width="477" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="21" id="wKf-lS-v3v"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GRp-ob-HIR">
+                                            <rect key="frame" x="115" y="8" width="477" height="79"/>
+                                            <fontDescription key="fontDescription" name="TimesNewRomanPS-BoldMT" family="Times New Roman" pointSize="12"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstItem="vRj-RF-GTg" firstAttribute="top" secondItem="GRp-ob-HIR" secondAttribute="bottom" constant="-3" id="D9l-Jr-FhC"/>
+                                        <constraint firstItem="vRj-RF-GTg" firstAttribute="bottom" secondItem="LYm-qM-AZ7" secondAttribute="bottom" id="ENJ-ol-Lg5"/>
+                                        <constraint firstItem="vRj-RF-GTg" firstAttribute="trailing" secondItem="GRp-ob-HIR" secondAttribute="trailing" id="Nvq-x5-gjI"/>
+                                        <constraint firstItem="LYm-qM-AZ7" firstAttribute="top" secondItem="oSA-il-Kfs" secondAttribute="topMargin" constant="-3" id="Wex-mT-4ls"/>
+                                        <constraint firstItem="GRp-ob-HIR" firstAttribute="leading" secondItem="LYm-qM-AZ7" secondAttribute="trailing" constant="8" symbolic="YES" id="Zki-Hw-28E"/>
+                                        <constraint firstItem="LYm-qM-AZ7" firstAttribute="leading" secondItem="oSA-il-Kfs" secondAttribute="leadingMargin" constant="-1" id="aZR-aN-7OT"/>
+                                        <constraint firstItem="vRj-RF-GTg" firstAttribute="trailing" secondItem="oSA-il-Kfs" secondAttribute="trailingMargin" id="e4C-QV-V6t"/>
+                                        <constraint firstItem="GRp-ob-HIR" firstAttribute="leading" secondItem="vRj-RF-GTg" secondAttribute="leading" id="fSi-DA-dTg"/>
+                                        <constraint firstItem="LYm-qM-AZ7" firstAttribute="top" secondItem="GRp-ob-HIR" secondAttribute="top" constant="-3" id="lna-Qt-Rhf"/>
+                                        <constraint firstItem="LYm-qM-AZ7" firstAttribute="centerY" secondItem="oSA-il-Kfs" secondAttribute="centerY" id="p73-BS-jI8"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="img" destination="LYm-qM-AZ7" id="et8-ZQ-I9I"/>
+                                    <outlet property="pubDateLbl" destination="vRj-RF-GTg" id="UiE-AW-rF8"/>
+                                    <outlet property="titleLbl" destination="GRp-ob-HIR" id="r7A-QQ-DEU"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="MWQ-8f-HFY" id="ADg-Jr-80Q"/>
+                            <outlet property="delegate" destination="MWQ-8f-HFY" id="oG1-Az-eVr"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="lostfilm.tv RSS" id="Nls-cK-ACc"/>
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="r3L-WH-ZnM">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </refreshControl>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ce7-tN-w8B" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="540" y="375"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="zrF-lO-Q38">
+            <objects>
+                <navigationController id="6wM-tZ-9zG" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="lxG-8X-AWu">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="MWQ-8f-HFY" kind="relationship" relationship="rootViewController" id="kc9-ur-BqY"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2Nk-8A-ZK6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-124" y="375"/>
         </scene>
     </scenes>
 </document>
