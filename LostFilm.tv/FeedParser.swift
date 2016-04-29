@@ -8,6 +8,8 @@
 
 import UIKit
 
+
+
 class FeedParser: NSObject, NSXMLParserDelegate {
 
     private var rssItems : [(title: String, description: String, pubDate: String)] = []
@@ -50,7 +52,6 @@ class FeedParser: NSObject, NSXMLParserDelegate {
             
             
         })
-        
         task.resume()
     }
     
@@ -70,35 +71,10 @@ class FeedParser: NSObject, NSXMLParserDelegate {
     }
     var str = ""
     
-    func parser(parser: NSXMLParser, var foundCharacters string: String) {
+    func parser(parser: NSXMLParser, foundCharacters string: String) {
+        var str = string
         switch currentElement {
-            case "title" : currentTitle += string
-            // удаление англ. названия
-//            var tit:Array = [String](count: string.characters.count, repeatedValue: "")
-//            var k=0
-//            var boo = false
-//            var i = 0
-//            for i in string.characters{
-//                tit[k] = String(i)
-//                k++
-//            }
-//            string = ""
-//            if tit.count>1 {
-//            while i<tit.count-1{
-//                if tit[i] == "(" { boo = true
-//                var u=i
-//                    while u<tit.count-1 {
-//                        tit[u-1]=tit[u]
-//                        u++
-//                    }
-//                }
-//                else if tit[i] == ")" { boo = false; i++}
-//                if boo { string += ""}
-//                else {string += String(tit[i])}
-//                i++
-//            }
-//            }
-//            currentTitle += string
+            case "title" : currentTitle += str
             case "description" :
             var str: Array = [String](count: string.characters.count, repeatedValue: "")
             var k=0
@@ -142,13 +118,13 @@ class FeedParser: NSObject, NSXMLParserDelegate {
                 pub[k]=String(i)
                 k += 1
             }
-            string = ""
+             str = ""
             if pub.count>1{
                 for i in 5...16{
-                    string += String(pub[i])
+                    str += String(pub[i])
                 }
             }
-            currentPubDate += string
+            currentPubDate += str
         default : break
         }
     }

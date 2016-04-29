@@ -31,7 +31,7 @@ class TableViewController: UITableViewController {
                 self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .None)
             })
         })
-        self.refreshControl?.addTarget(self, action: "didRefreshList", forControlEvents: .ValueChanged)
+        self.refreshControl?.addTarget(self, action: #selector(TableViewController.didRefreshList), forControlEvents: .ValueChanged)
         
         self.refreshControl?.attributedTitle = NSAttributedString(string: "последнее обновление: \(NSDate())")
 
@@ -48,7 +48,7 @@ class TableViewController: UITableViewController {
                 self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .None)
             })
         })
-        self.refreshControl?.addTarget(self, action: "didRefreshList", forControlEvents: .ValueChanged)
+        self.refreshControl?.addTarget(self, action: #selector(TableViewController.didRefreshList), forControlEvents: .ValueChanged)
         self.tableViewController.tableView.reloadData()
         self.refreshControl?.endRefreshing()
     }
@@ -81,17 +81,12 @@ class TableViewController: UITableViewController {
         if let item = rssItems?[indexPath.row]{
             cell.titleLbl.text = item.title
             let url = NSURL(string: item.description)
-            let request = NSURLRequest(URL: url!)
             
-            NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()){
-                (response: NSURLResponse?, data: NSData? , error: NSError?) -> Void in
-                cell.img.image = UIImage(data: data!)
-            }
+            cell.img.image = UIImage(data: NSData(contentsOfURL: url!)!)
+            
             cell.pubDateLbl.text = item.pubDate
+            cell.b
         }
-        
-
-        // Configure the cell...
 
         return cell
     }

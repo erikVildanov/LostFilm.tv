@@ -56,6 +56,9 @@
                                         <constraint firstItem="LYm-qM-AZ7" firstAttribute="centerY" secondItem="oSA-il-Kfs" secondAttribute="centerY" id="p73-BS-jI8"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" button="YES"/>
+                                </accessibility>
                                 <connections>
                                     <outlet property="img" destination="LYm-qM-AZ7" id="et8-ZQ-I9I"/>
                                     <outlet property="pubDateLbl" destination="vRj-RF-GTg" id="UiE-AW-rF8"/>
@@ -75,7 +78,36 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ce7-tN-w8B" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="540" y="375"/>
+            <point key="canvasLocation" x="572" y="369"/>
+        </scene>
+        <!--Table View Controller-->
+        <scene sceneID="7Wt-dp-2Eg">
+            <objects>
+                <tableViewController id="U6L-hM-N5a" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="117" sectionHeaderHeight="28" sectionFooterHeight="28" id="yeq-ao-COl">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="117" id="zIF-CO-gsD">
+                                <rect key="frame" x="0.0" y="28" width="600" height="117"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zIF-CO-gsD" id="i6E-LR-bZe">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="116"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="U6L-hM-N5a" id="H8T-Dx-uY6"/>
+                            <outlet property="delegate" destination="U6L-hM-N5a" id="6tF-f2-Fiq"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="idZ-Mm-Thy"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JaZ-Y0-zHf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1269" y="375"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="zrF-lO-Q38">
