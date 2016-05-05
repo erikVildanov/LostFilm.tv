@@ -8,8 +8,13 @@
 
 import UIKit
 
-class TableViewController: UITableViewController {
 
+
+class tableViewController: SecondViewController, UITableViewDataSource, UITableViewDelegate {
+
+   
+    
+    @IBOutlet weak var tableView: UITableView!
     private var rssItems: [(title: String, description: String, pubDate: String)]?
     private var tablData = [String]()
     private var tableViewController = UITableViewController(style: .Plain)
@@ -18,7 +23,7 @@ class TableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        navigationController?.delegate
         
         let feedParser = FeedParser()
         
@@ -26,46 +31,46 @@ class TableViewController: UITableViewController {
             (rssItems:[(title: String, description: String, pubDate: String)]) -> Void in
             
             self.rssItems = rssItems
-            
+            if self.tableView != nil {
             dispatch_async(dispatch_get_main_queue(), {
                 self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .None)
             })
+            }
+            
         })
-        self.refreshControl?.addTarget(self, action: #selector(TableViewController.didRefreshList), forControlEvents: .ValueChanged)
-        
-        self.refreshControl?.attributedTitle = NSAttributedString(string: "последнее обновление: \(NSDate())")
+//        self.refreshControl?.addTarget(self, action: #selector(TableViewController.didRefreshList), forControlEvents: .ValueChanged)
+//        
+//        self.refreshControl?.attributedTitle = NSAttributedString(string: "последнее обновление: \(NSDate())")
 
     }
-    func didRefreshList(){
-        let feedParser = FeedParser()
-        
-        feedParser.parseFeed("https://www.lostfilm.tv/rssdd.xml", completionHandler: {
-            (rssItems:[(title: String, description: String, pubDate: String)]) -> Void in
-            
-            self.rssItems = rssItems
-            
-            dispatch_async(dispatch_get_main_queue(), {
-                self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .None)
-            })
-        })
-        self.refreshControl?.addTarget(self, action: #selector(TableViewController.didRefreshList), forControlEvents: .ValueChanged)
-        self.tableViewController.tableView.reloadData()
-        self.refreshControl?.endRefreshing()
-    }
+    
+//    func didRefreshList(){
+//        let feedParser = FeedParser()
+//        
+//        feedParser.parseFeed("https://www.lostfilm.tv/rssdd.xml", completionHandler: {
+//            (rssItems:[(title: String, description: String, pubDate: String)]) -> Void in
+//            
+//            self.rssItems = rssItems
+//            
+//            dispatch_async(dispatch_get_main_queue(), {
+//                self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .None)
+//            })
+//        })
+//        self.refreshControl?.addTarget(self, action: #selector(TableViewController.didRefreshList), forControlEvents: .ValueChanged)
+//        self.tableViewController.tableView.reloadData()
+//        self.refreshControl?.endRefreshing()
+//    }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+
 
     // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         if let rss = self.rssItems {
             return rss.count
@@ -75,7 +80,7 @@ class TableViewController: UITableViewController {
     }
 
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! TableViewCell
         
         if let item = rssItems?[indexPath.row]{
@@ -85,12 +90,19 @@ class TableViewController: UITableViewController {
             cell.img.image = UIImage(data: NSData(contentsOfURL: url!)!)
             
             cell.pubDateLbl.text = item.pubDate
-            cell.b
         }
-
+        
+        
         return cell
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "pushSecond" {
+            // разобраться с делегатами
+            let destinationVC = segue.destinationViewController as! SecondViewController
+            destinationVC.delegate = self
+        }
+    }
 
     /*
     // Override to support conditional editing of the table view.
