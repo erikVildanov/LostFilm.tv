@@ -9,23 +9,39 @@
 import UIKit
 
 
-class rssFilm {
-    var title:String = ""
-    var description: String = ""
-    var pubDate: String = ""
-    var mass: ([(title: String, description: String, pubDate: String)]) = []
+class rssFilm: NSObject {
+    var title:[String] = []
+    var description1: [String] = []
+    var pubDate: [String] = []
+    //var mass: ([(title: String, description: String, pubDate: String)]) = []
     
     
     init(title: String, description: String, pubDate: String){
-        self.title = title
-        self.description = description
-        self.pubDate = pubDate
+        self.title.append(title)// = title
+        self.description1.append(description)// = description
+        self.pubDate.append(pubDate)// = pubDate
+    }
+    init(rss: [(title: String, description: String, pubDate: String)]){
+        for i in 0...rss.count-1{
+        
+        self.title.append(rss[i].title)// = title
+        self.description1.append(rss[i].description)// = description
+        self.pubDate.append(rss[i].pubDate)// = pubDate
+        }
     }
     
-    init(str : [(title: String, description: String, pubDate: String)]){
-        self.mass = str
-        
+    private func pars (rss: [(title: String, description: String, pubDate: String)]){
+        for i in 0...rss.count{
+            
+        rssFilm(rss[i])
+            
+        }
     }
+    
+//    init(str : [(title: String, description: String, pubDate: String)]){
+//        self.mass = str
+//        
+//    }
     
 }
 

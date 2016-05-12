@@ -27,7 +27,7 @@ class tableViewController: UIViewController, UITableViewDataSource, UITableViewD
         feedParser.parseFeed("https://www.lostfilm.tv/rssdd.xml", completionHandler: {
             (rssItems:[(title: String, description: String, pubDate: String)]) -> Void in
             
-            self.rssItems.append(rssFilm(str: rssItems))
+            self.rssItems.append(rssFilm(rss: rssItems))
             
             if self.tableView != nil {
             dispatch_async(dispatch_get_main_queue(), {
@@ -83,18 +83,19 @@ class tableViewController: UIViewController, UITableViewDataSource, UITableViewD
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! TableViewCell
         
         var k = 0
-        if k < 15{
-        if let item: rssFilm = rssItems[indexPath.row]{ //?
-            cell.titleLbl.text = item.mass[k].title
-            let url = NSURL(string: item.mass[k].description)
+        repeat{
+        if let item: rssFilm = rssItems[0]{ //?
+            cell.titleLbl.text = item.title[k] //item.mass[k].title
+            let url = NSURL(string: item.description1[k])//item.mass[k].description)
             
             cell.img.image = UIImage(data: NSData(contentsOfURL: url!)!)
             
-            cell.pubDateLbl.text = item.mass[k].pubDate
+            cell.pubDateLbl.text = item.pubDate[k]
         }
             k += 1
         
-    }
+        } while k < 15
+        
         return cell
     }
     
