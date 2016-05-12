@@ -8,14 +8,13 @@
 
 import UIKit
 
+//создать массив моделей, что бы не было rssItems в виде массива а массив класса
 
-
-class tableViewController: SecondViewController, UITableViewDataSource, UITableViewDelegate {
-
-   
+class tableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, vcProtocol{
     
     @IBOutlet weak var tableView: UITableView!
-    private var rssItems: [(title: String, description: String, pubDate: String)]?
+    //private var rssItems: [(title: String, description: String, pubDate: String)]?
+    var rssItems: [(rssFilm)] = []
     private var tablData = [String]()
     private var tableViewController = UITableViewController(style: .Plain)
     
@@ -23,14 +22,13 @@ class tableViewController: SecondViewController, UITableViewDataSource, UITableV
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationController?.delegate
-        
         let feedParser = FeedParser()
         
         feedParser.parseFeed("https://www.lostfilm.tv/rssdd.xml", completionHandler: {
             (rssItems:[(title: String, description: String, pubDate: String)]) -> Void in
             
-            self.rssItems = rssItems
+            self.rssItems.append(rssFilm(str: rssItems))
+            
             if self.tableView != nil {
             dispatch_async(dispatch_get_main_queue(), {
                 self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .None)
@@ -72,7 +70,8 @@ class tableViewController: SecondViewController, UITableViewDataSource, UITableV
 
      func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        if let rss = self.rssItems {
+        //if let rss = self.rssItems{
+        if let rss: ([rssFilm]) = self.rssItems{
             return rss.count
         } else {
             return 0
@@ -83,27 +82,35 @@ class tableViewController: SecondViewController, UITableViewDataSource, UITableV
      func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! TableViewCell
         
-        if let item = rssItems?[indexPath.row]{
-            cell.titleLbl.text = item.title
-            let url = NSURL(string: item.description)
+        var k = 0
+        if k < 15{
+        if let item: rssFilm = rssItems[indexPath.row]{ //?
+            cell.titleLbl.text = item.mass[k].title
+            let url = NSURL(string: item.mass[k].description)
             
             cell.img.image = UIImage(data: NSData(contentsOfURL: url!)!)
             
-            cell.pubDateLbl.text = item.pubDate
+            cell.pubDateLbl.text = item.mass[k].pubDate
         }
+            k += 1
         
-        
+    }
         return cell
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+
         if segue.identifier == "pushSecond" {
-            // разобраться с делегатами
             let destinationVC = segue.destinationViewController as! SecondViewController
             destinationVC.delegate = self
+            
         }
+        
     }
 
+    func rss(rssItems: (title: String, description: String, pubDate: String)) {
+        
+    }
     /*
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {

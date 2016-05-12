@@ -8,24 +8,24 @@
 
 import UIKit
 
-protocol tableViewControllerDelegate {
-    
-    func rssItemsSecond(rssItems: (title: String, description: String, pubDate: String))
-    
+protocol vcProtocol {
+    func rss(rssItems: (title: String, description: String, pubDate: String))
 }
 
 class SecondViewController: UIViewController {
     
-
     @IBOutlet weak var secTitleLBl: UILabel!
     @IBOutlet weak var secPubDateLbl: UILabel!
     @IBOutlet weak var secDescriptionLbl: UILabel!
     @IBOutlet weak var secImageLbl: UIImageView!
     
-    var delegate: tableViewControllerDelegate?
+     var delegate: vcProtocol?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        secTitleLBl.lineBreakMode = NSLineBreakMode.ByWordWrapping
+        secTitleLBl.numberOfLines = 0
+        secTitleLBl.text = self.delegate.debugDescription
         // Do any additional setup after loading the view.
     }
 
@@ -34,16 +34,11 @@ class SecondViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-
-//    func secTitle (rssItems: (title: String, description: String, pubDate: String)){
-//        secTitleLBl.text = rssItems.title
-//        secPubDateLbl.text = rssItems.pubDate
-//        secImageLbl.image = UIImage(data: NSData(contentsOfURL:NSURL(string: rssItems.description)! )!)
-//        
-//    }
-
-
+    func rss(rssItems: (title: String, description: String, pubDate: String)) {
+        secPubDateLbl.text = rssItems.pubDate
+        secDescriptionLbl.text = rssItems.description
+        secTitleLBl.text = rssItems.title
+    }
     /*
     // MARK: - Navigation
 

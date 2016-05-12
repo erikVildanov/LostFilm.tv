@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8B6F72FA1CE3055C008500EE /* rssFilm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6F72F91CE3055C008500EE /* rssFilm.swift */; };
 		8B7825471CDAF8E700AD9B30 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7825461CDAF8E700AD9B30 /* SecondViewController.swift */; };
 		8BCF90F91CD28215001FD300 /* FeedParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCF90F61CD28215001FD300 /* FeedParser.swift */; };
 		8BCF90FA1CD28215001FD300 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCF90F71CD28215001FD300 /* TableViewCell.swift */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8B6F72F91CE3055C008500EE /* rssFilm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = rssFilm.swift; sourceTree = "<group>"; };
 		8B7825461CDAF8E700AD9B30 /* SecondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		8BCF90F61CD28215001FD300 /* FeedParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedParser.swift; sourceTree = "<group>"; };
 		8BCF90F71CD28215001FD300 /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
@@ -72,6 +74,7 @@
 				E339BC3C1CD1D87300844F96 /* LaunchScreen.storyboard */,
 				E339BC3F1CD1D87300844F96 /* Info.plist */,
 				E339BC371CD1D87300844F96 /* LostFilm_tv.xcdatamodeld */,
+				8B6F72F91CE3055C008500EE /* rssFilm.swift */,
 			);
 			path = LostFilm.tv;
 			sourceTree = "<group>";
@@ -147,6 +150,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B6F72FA1CE3055C008500EE /* rssFilm.swift in Sources */,
 				8B7825471CDAF8E700AD9B30 /* SecondViewController.swift in Sources */,
 				8BCF90FA1CD28215001FD300 /* TableViewCell.swift in Sources */,
 				8BCF90FB1CD28215001FD300 /* TableViewController.swift in Sources */,
