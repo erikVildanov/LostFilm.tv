@@ -10,11 +10,11 @@ import UIKit
 
 //создать массив моделей, что бы не было rssItems в виде массива а массив класса
 
-class tableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, vcProtocol{
+class tableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate{
     
     @IBOutlet weak var tableView: UITableView!
     //private var rssItems: [(title: String, description: String, pubDate: String)]?
-    var rssItems: [(rssFilm)] = []
+    var rssItems: [RssFilm] = []
     private var tablData = [String]()
     private var tableViewController = UITableViewController(style: .Plain)
     
@@ -24,11 +24,12 @@ class tableViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         let feedParser = FeedParser()
         
-        feedParser.parseFeed("https://www.lostfilm.tv/rssdd.xml", completionHandler: {
-            (rssItems:[(title: String, description: String, pubDate: String)]) -> Void in
+        feedParser.parseFeed("https://www.lostfilm.tv/rssdd.xml", completionHandler:
+            {
+            (rssItems:[RssFilm]) -> Void in
             
-            self.rssItems.append(rssFilm(rss: rssItems))
-            
+            self.rssItems = rssItems
+                
             if self.tableView != nil {
             dispatch_async(dispatch_get_main_queue(), {
                 self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .None)
@@ -71,7 +72,7 @@ class tableViewController: UIViewController, UITableViewDataSource, UITableViewD
      func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         //if let rss = self.rssItems{
-        if let rss: ([rssFilm]) = self.rssItems{
+        if let rss: [RssFilm] = self.rssItems{
             return rss.count
         } else {
             return 0
@@ -82,36 +83,33 @@ class tableViewController: UIViewController, UITableViewDataSource, UITableViewD
      func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! TableViewCell
         
-        var k = 0
-        repeat{
-        if let item: rssFilm = rssItems[0]{ //?
-            cell.titleLbl.text = item.title[k] //item.mass[k].title
-            let url = NSURL(string: item.description1[k])//item.mass[k].description)
+        if let item: RssFilm = rssItems[indexPath.row]{
+            cell.titleLbl.text = item.title
             
-            cell.img.image = UIImage(data: NSData(contentsOfURL: url!)!)
+            let url = NSURL(string: item.description1)
+            let request = NSURLRequest(URL: url!)
+            NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()){
+            (response: NSURLResponse?, data: NSData? , error: NSError?) -> Void in
+            cell.img.image = UIImage(data: data!)
+            }
             
-            cell.pubDateLbl.text = item.pubDate[k]
+            cell.pubDateLbl.text = item.pubDate
         }
-            k += 1
-        
-        } while k < 15
         
         return cell
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    
+//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//
+//        if segue.identifier == "pushSecond" {
+//            let destinationVC = segue.destinationViewController as! DeteilViewController
+//            destinationVC.delegate = self
+//            
+//        }
+//        
+//    }
 
-        if segue.identifier == "pushSecond" {
-            let destinationVC = segue.destinationViewController as! SecondViewController
-            destinationVC.delegate = self
-            
-        }
-        
-    }
-
-    func rss(rssItems: (title: String, description: String, pubDate: String)) {
-        
-    }
     /*
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {

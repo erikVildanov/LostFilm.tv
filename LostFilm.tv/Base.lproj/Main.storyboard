@@ -91,10 +91,10 @@
             </objects>
             <point key="canvasLocation" x="1665" y="647"/>
         </scene>
-        <!--Second View Controller-->
+        <!--Deteil View Controller-->
         <scene sceneID="Aet-le-mbx">
             <objects>
-                <viewController id="pXn-sA-UIs" customClass="SecondViewController" customModule="LostFilm_tv" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="pXn-sA-UIs" customClass="DeteilViewController" customModule="LostFilm_tv" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Sir-Q0-4MH"/>
                         <viewControllerLayoutGuide type="bottom" id="k8w-V3-aYY"/>

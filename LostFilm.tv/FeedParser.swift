@@ -10,9 +10,9 @@ import UIKit
 
 
 
-class FeedParser: NSObject, NSXMLParserDelegate {
+class FeedParser: RssFilm, NSXMLParserDelegate {
 
-    private var rssItems : [(title: String, description: String, pubDate: String)] = []
+    private var rssItems : [RssFilm] = []
     
     private var currentElement = ""
     private var currentTitle = "" {
@@ -31,9 +31,9 @@ class FeedParser: NSObject, NSXMLParserDelegate {
         }
     }
     
-    private var parserCompletionHandler:([(title: String, description: String, pubDate: String)] -> Void )?
+    private var parserCompletionHandler:([RssFilm] -> Void )?
     
-    func parseFeed (feedUrl: String, completionHandler: ([(title: String, description: String, pubDate: String)] -> Void)?) -> Void {
+    func parseFeed (feedUrl: String, completionHandler: ([RssFilm] -> Void)?) -> Void {
         
         self.parserCompletionHandler = completionHandler
         
@@ -132,7 +132,7 @@ class FeedParser: NSObject, NSXMLParserDelegate {
     func parser(parser: NSXMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
         
         if elementName == "item" {
-            let rssItem = (title: currentTitle, description: currentDescription, pubDate: currentPubDate)
+            let rssItem: RssFilm = RssFilm(title: currentTitle, description: currentDescription, pubDate: currentPubDate)
             
             rssItems += [rssItem]
         }

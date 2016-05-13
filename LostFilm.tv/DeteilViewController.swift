@@ -9,10 +9,10 @@
 import UIKit
 
 protocol vcProtocol {
-    func rss(rssItems: (title: String, description: String, pubDate: String))
+    func rss(rssItems: RssFilm)
 }
 
-class SecondViewController: UIViewController {
+class DeteilViewController: UIViewController {
     
     @IBOutlet weak var secTitleLBl: UILabel!
     @IBOutlet weak var secPubDateLbl: UILabel!
