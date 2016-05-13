@@ -5,10 +5,10 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Table View Controller-->
+        <!--Film Table View Controller-->
         <scene sceneID="aEK-7B-f3L">
             <objects>
-                <viewController id="uvJ-l8-WTO" customClass="tableViewController" customModule="LostFilm_tv" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="uvJ-l8-WTO" customClass="FilmTableViewController" customModule="LostFilm_tv" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="aNf-XL-EzJ"/>
                         <viewControllerLayoutGuide type="bottom" id="bD6-v7-SUb"/>
@@ -28,19 +28,28 @@
                                             <rect key="frame" x="0.0" y="0.0" width="567" height="107"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="pubDateLbl" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yKh-c5-75W">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="pubDateLbl" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yKh-c5-75W">
                                                     <rect key="frame" x="162" y="78" width="95" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="kgO-YD-isC"/>
+                                                        <constraint firstAttribute="width" constant="95" id="wNK-c3-XKX"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Emd-fh-2NQ">
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Jzs-Hf-6cu">
                                                     <rect key="frame" x="8" y="0.0" width="146" height="107"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="146" id="evb-9E-RMQ"/>
-                                                    </constraints>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="titleLbl" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZiH-MT-eGm">
+                                                    <subviews>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Emd-fh-2NQ">
+                                                            <rect key="frame" x="0.0" y="0.0" width="146" height="107"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="146" id="gO4-OJ-eQP"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                    </subviews>
+                                                </stackView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="titleLbl" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZiH-MT-eGm">
                                                     <rect key="frame" x="162" y="8" width="364" height="62"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -48,13 +57,15 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="ZiH-MT-eGm" firstAttribute="top" secondItem="B65-uy-cSi" secondAttribute="topMargin" id="AKr-d2-I7x"/>
-                                                <constraint firstItem="Emd-fh-2NQ" firstAttribute="top" secondItem="B65-uy-cSi" secondAttribute="top" id="CgV-Sp-XCm"/>
-                                                <constraint firstItem="ZiH-MT-eGm" firstAttribute="leading" secondItem="yKh-c5-75W" secondAttribute="leading" id="ENh-3b-xDV"/>
-                                                <constraint firstItem="yKh-c5-75W" firstAttribute="bottom" secondItem="B65-uy-cSi" secondAttribute="bottomMargin" id="KJf-1H-8Xa"/>
-                                                <constraint firstAttribute="bottom" secondItem="Emd-fh-2NQ" secondAttribute="bottom" id="Q7n-7t-keI"/>
-                                                <constraint firstItem="ZiH-MT-eGm" firstAttribute="leading" secondItem="Emd-fh-2NQ" secondAttribute="trailing" constant="8" symbolic="YES" id="qTs-pl-01q"/>
-                                                <constraint firstItem="Emd-fh-2NQ" firstAttribute="leading" secondItem="B65-uy-cSi" secondAttribute="leadingMargin" id="yzm-nS-3DS"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="ZiH-MT-eGm" secondAttribute="trailing" constant="33" id="156-47-pZ5"/>
+                                                <constraint firstItem="Jzs-Hf-6cu" firstAttribute="leading" secondItem="B65-uy-cSi" secondAttribute="leadingMargin" id="5tR-9f-UdP"/>
+                                                <constraint firstAttribute="bottom" secondItem="Jzs-Hf-6cu" secondAttribute="bottom" id="K8X-Ke-S0b"/>
+                                                <constraint firstItem="yKh-c5-75W" firstAttribute="top" secondItem="ZiH-MT-eGm" secondAttribute="bottom" constant="8" symbolic="YES" id="QCO-Q3-AF5"/>
+                                                <constraint firstItem="yKh-c5-75W" firstAttribute="bottom" secondItem="B65-uy-cSi" secondAttribute="bottomMargin" id="QII-c9-Xfg"/>
+                                                <constraint firstItem="ZiH-MT-eGm" firstAttribute="top" secondItem="B65-uy-cSi" secondAttribute="topMargin" id="Rvl-8i-nb8"/>
+                                                <constraint firstItem="ZiH-MT-eGm" firstAttribute="leading" secondItem="Jzs-Hf-6cu" secondAttribute="trailing" constant="8" symbolic="YES" id="qeV-bn-Hfr"/>
+                                                <constraint firstItem="ZiH-MT-eGm" firstAttribute="leading" secondItem="yKh-c5-75W" secondAttribute="leading" id="qfu-Om-Bpu"/>
+                                                <constraint firstItem="Jzs-Hf-6cu" firstAttribute="top" secondItem="B65-uy-cSi" secondAttribute="top" id="wjk-oh-14t"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <accessibility key="accessibilityConfiguration">

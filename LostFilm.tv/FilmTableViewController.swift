@@ -8,16 +8,12 @@
 
 import UIKit
 
-//создать массив моделей, что бы не было rssItems в виде массива а массив класса
-
-class tableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate{
+class FilmTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate{
     
     @IBOutlet weak var tableView: UITableView!
-    //private var rssItems: [(title: String, description: String, pubDate: String)]?
     var rssItems: [RssFilm] = []
     private var tablData = [String]()
     private var tableViewController = UITableViewController(style: .Plain)
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -99,16 +95,16 @@ class tableViewController: UIViewController, UITableViewDataSource, UITableViewD
         return cell
     }
     
+    //кастинг, как выхватить id, segue
+        override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     
-//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//
-//        if segue.identifier == "pushSecond" {
-//            let destinationVC = segue.destinationViewController as! DeteilViewController
-//            destinationVC.delegate = self
-//            
-//        }
-//        
-//    }
+            if segue.identifier == "pushSecond" {
+                let destinationVC = seguedestinationViewController as! DeteilViewController
+                let VC = segue.sendAsynchronousRequest
+            }
+    
+        }
+    
 
     /*
     // Override to support conditional editing of the table view.

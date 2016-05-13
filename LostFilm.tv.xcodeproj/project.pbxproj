@@ -11,7 +11,7 @@
 		8B7825471CDAF8E700AD9B30 /* DeteilViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7825461CDAF8E700AD9B30 /* DeteilViewController.swift */; };
 		8BCF90F91CD28215001FD300 /* FeedParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCF90F61CD28215001FD300 /* FeedParser.swift */; };
 		8BCF90FA1CD28215001FD300 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCF90F71CD28215001FD300 /* TableViewCell.swift */; };
-		8BCF90FB1CD28215001FD300 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCF90F81CD28215001FD300 /* TableViewController.swift */; };
+		8BCF90FB1CD28215001FD300 /* FilmTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCF90F81CD28215001FD300 /* FilmTableViewController.swift */; };
 		E339BC311CD1D87300844F96 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E339BC301CD1D87300844F96 /* AppDelegate.swift */; };
 		E339BC361CD1D87300844F96 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E339BC341CD1D87300844F96 /* Main.storyboard */; };
 		E339BC391CD1D87300844F96 /* LostFilm_tv.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E339BC371CD1D87300844F96 /* LostFilm_tv.xcdatamodeld */; };
@@ -24,7 +24,7 @@
 		8B7825461CDAF8E700AD9B30 /* DeteilViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeteilViewController.swift; sourceTree = "<group>"; };
 		8BCF90F61CD28215001FD300 /* FeedParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedParser.swift; sourceTree = "<group>"; };
 		8BCF90F71CD28215001FD300 /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
-		8BCF90F81CD28215001FD300 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		8BCF90F81CD28215001FD300 /* FilmTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilmTableViewController.swift; sourceTree = "<group>"; };
 		E339BC2D1CD1D87300844F96 /* LostFilm.tv.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LostFilm.tv.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E339BC301CD1D87300844F96 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E339BC351CD1D87300844F96 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -66,7 +66,7 @@
 			children = (
 				8BCF90F61CD28215001FD300 /* FeedParser.swift */,
 				8BCF90F71CD28215001FD300 /* TableViewCell.swift */,
-				8BCF90F81CD28215001FD300 /* TableViewController.swift */,
+				8BCF90F81CD28215001FD300 /* FilmTableViewController.swift */,
 				E339BC301CD1D87300844F96 /* AppDelegate.swift */,
 				8B7825461CDAF8E700AD9B30 /* DeteilViewController.swift */,
 				E339BC341CD1D87300844F96 /* Main.storyboard */,
@@ -153,7 +153,7 @@
 				8B6F72FA1CE3055C008500EE /* rssFilm.swift in Sources */,
 				8B7825471CDAF8E700AD9B30 /* DeteilViewController.swift in Sources */,
 				8BCF90FA1CD28215001FD300 /* TableViewCell.swift in Sources */,
-				8BCF90FB1CD28215001FD300 /* TableViewController.swift in Sources */,
+				8BCF90FB1CD28215001FD300 /* FilmTableViewController.swift in Sources */,
 				8BCF90F91CD28215001FD300 /* FeedParser.swift in Sources */,
 				E339BC311CD1D87300844F96 /* AppDelegate.swift in Sources */,
 				E339BC391CD1D87300844F96 /* LostFilm_tv.xcdatamodeld in Sources */,

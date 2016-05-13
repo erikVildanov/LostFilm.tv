@@ -24,9 +24,7 @@ class RssFilm: NSObject {
         self.title = title
         self.description1 = description
         self.pubDate = pubDate
-    }
-
-    
+    }    
 }
 
 

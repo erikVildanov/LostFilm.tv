@@ -8,24 +8,21 @@
 
 import UIKit
 
-protocol vcProtocol {
-    func rss(rssItems: RssFilm)
+protocol DeteilViewControllerProtocol {
+    func rss(rssItem: RssFilm)
 }
 
-class DeteilViewController: UIViewController {
+class DeteilViewController: UIViewController, DeteilViewControllerProtocol  {
     
     @IBOutlet weak var secTitleLBl: UILabel!
     @IBOutlet weak var secPubDateLbl: UILabel!
     @IBOutlet weak var secDescriptionLbl: UILabel!
     @IBOutlet weak var secImageLbl: UIImageView!
     
-     var delegate: vcProtocol?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        secTitleLBl.lineBreakMode = NSLineBreakMode.ByWordWrapping
-        secTitleLBl.numberOfLines = 0
-        secTitleLBl.text = self.delegate.debugDescription
+        
         // Do any additional setup after loading the view.
     }
 
@@ -34,19 +31,11 @@ class DeteilViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func rss(rssItems: (title: String, description: String, pubDate: String)) {
-        secPubDateLbl.text = rssItems.pubDate
-        secDescriptionLbl.text = rssItems.description
-        secTitleLBl.text = rssItems.title
+    func rss(rssItem: RssFilm) {
+        
+        secPubDateLbl.text = rssItem.pubDate
+        secDescriptionLbl.text = rssItem.description1
+        secTitleLBl.text = rssItem.title
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    
 }
