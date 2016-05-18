@@ -69,12 +69,12 @@
 				8BCF90F81CD28215001FD300 /* FilmTableViewController.swift */,
 				E339BC301CD1D87300844F96 /* AppDelegate.swift */,
 				8B7825461CDAF8E700AD9B30 /* DeteilViewController.swift */,
+				8B6F72F91CE3055C008500EE /* rssFilm.swift */,
 				E339BC341CD1D87300844F96 /* Main.storyboard */,
 				E339BC3A1CD1D87300844F96 /* Assets.xcassets */,
 				E339BC3C1CD1D87300844F96 /* LaunchScreen.storyboard */,
 				E339BC3F1CD1D87300844F96 /* Info.plist */,
 				E339BC371CD1D87300844F96 /* LostFilm_tv.xcdatamodeld */,
-				8B6F72F91CE3055C008500EE /* rssFilm.swift */,
 			);
 			path = LostFilm.tv;
 			sourceTree = "<group>";

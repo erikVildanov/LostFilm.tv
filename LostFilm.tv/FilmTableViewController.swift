@@ -15,6 +15,7 @@ class FilmTableViewController: UIViewController, UITableViewDataSource, UITableV
     private var tablData = [String]()
     private var tableViewController = UITableViewController(style: .Plain)
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -86,6 +87,7 @@ class FilmTableViewController: UIViewController, UITableViewDataSource, UITableV
             let request = NSURLRequest(URL: url!)
             NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()){
             (response: NSURLResponse?, data: NSData? , error: NSError?) -> Void in
+                
             cell.img.image = UIImage(data: data!)
             }
             
@@ -98,10 +100,16 @@ class FilmTableViewController: UIViewController, UITableViewDataSource, UITableV
     //кастинг, как выхватить id, segue
         override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     
-            if segue.identifier == "pushSecond" {
-                let destinationVC = seguedestinationViewController as! DeteilViewController
-                let VC = segue.sendAsynchronousRequest
-            }
+           // if segue.identifier == "pushSecond" {
+                let destinationVC = segue.destinationViewController as! DeteilViewControllerProtocol
+                let indexPath = self.tableView.indexPathForSelectedRow?.row
+                
+                //destinationVC.infoFilm = rssItems[indexPath!]
+                
+               // destinationVC.delegate!.rss(rssItems[indexPath!])
+                destinationVC.rss(rssItems[indexPath!])
+                    
+           // }
     
         }
     

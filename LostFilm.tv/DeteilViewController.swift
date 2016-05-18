@@ -9,6 +9,7 @@
 import UIKit
 
 protocol DeteilViewControllerProtocol {
+    
     func rss(rssItem: RssFilm)
 }
 
@@ -20,9 +21,25 @@ class DeteilViewController: UIViewController, DeteilViewControllerProtocol  {
     @IBOutlet weak var secImageLbl: UIImageView!
     
     
+    //var delegate: DeteilViewControllerProtocol?
+    
+    var infoFilm = RssFilm()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        secTitleLBl.text = infoFilm.title
+        secDescriptionLbl.text = infoFilm.description1
+        secPubDateLbl.text = infoFilm.pubDate
+        let url = NSURL(string: infoFilm.description1)
+        let request = NSURLRequest(URL: url!)
+        NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()){
+            (response: NSURLResponse?, data: NSData? , error: NSError?) -> Void in
+            let cv:CGSize = CGSizeMake(100, 100)
+            self.secImageLbl.sizeThatFits(cv)
+            self.secImageLbl.image = UIImage(data: data!)
+        }
         
+        //secImageLbl.image = UIImage(data: NSData(contentsOfURL: url!)!)
         // Do any additional setup after loading the view.
     }
 
@@ -32,10 +49,7 @@ class DeteilViewController: UIViewController, DeteilViewControllerProtocol  {
     }
     
     func rss(rssItem: RssFilm) {
-        
-        secPubDateLbl.text = rssItem.pubDate
-        secDescriptionLbl.text = rssItem.description1
-        secTitleLBl.text = rssItem.title
+        infoFilm = rssItem
     }
     
 }
