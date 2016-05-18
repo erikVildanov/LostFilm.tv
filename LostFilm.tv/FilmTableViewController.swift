@@ -15,48 +15,47 @@ class FilmTableViewController: UIViewController, UITableViewDataSource, UITableV
     private var tablData = [String]()
     private var tableViewController = UITableViewController(style: .Plain)
     
+    var refreshControl = UIRefreshControl()
+    var dateFormatter = NSDateFormatter()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // set up the refresh control
+        self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        self.refreshControl.addTarget(self, action: #selector(FilmTableViewController.refresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
+        self.tableView?.addSubview(refreshControl)
+        
+        
+        loadRssFilm()   
+
+    }
+    
+    func loadRssFilm(){
         let feedParser = FeedParser()
         
         feedParser.parseFeed("https://www.lostfilm.tv/rssdd.xml", completionHandler:
             {
-            (rssItems:[RssFilm]) -> Void in
-            
-            self.rssItems = rssItems
+                (rssItems:[RssFilm]) -> Void in
                 
-            if self.tableView != nil {
-            dispatch_async(dispatch_get_main_queue(), {
-                self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .None)
-            })
-            }
-            
+                self.rssItems = rssItems
+                
+                if self.tableView != nil {
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .None)
+                    })
+                }
+                
         })
-//        self.refreshControl?.addTarget(self, action: #selector(TableViewController.didRefreshList), forControlEvents: .ValueChanged)
-//        
-//        self.refreshControl?.attributedTitle = NSAttributedString(string: "последнее обновление: \(NSDate())")
-
     }
     
-//    func didRefreshList(){
-//        let feedParser = FeedParser()
-//        
-//        feedParser.parseFeed("https://www.lostfilm.tv/rssdd.xml", completionHandler: {
-//            (rssItems:[(title: String, description: String, pubDate: String)]) -> Void in
-//            
-//            self.rssItems = rssItems
-//            
-//            dispatch_async(dispatch_get_main_queue(), {
-//                self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .None)
-//            })
-//        })
-//        self.refreshControl?.addTarget(self, action: #selector(TableViewController.didRefreshList), forControlEvents: .ValueChanged)
-//        self.tableViewController.tableView.reloadData()
-//        self.refreshControl?.endRefreshing()
-//    }
-
+    func refresh(sender:AnyObject) {
+        loadRssFilm()
+        if self.refreshControl.refreshing
+        {
+            self.refreshControl.endRefreshing()
+        }
+    }
 
 
     // MARK: - Table view data source
@@ -68,7 +67,6 @@ class FilmTableViewController: UIViewController, UITableViewDataSource, UITableV
 
      func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        //if let rss = self.rssItems{
         if let rss: [RssFilm] = self.rssItems{
             return rss.count
         } else {
@@ -97,16 +95,12 @@ class FilmTableViewController: UIViewController, UITableViewDataSource, UITableV
         return cell
     }
     
-    //кастинг, как выхватить id, segue
         override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     
            // if segue.identifier == "pushSecond" {
                 let destinationVC = segue.destinationViewController as! DeteilViewControllerProtocol
                 let indexPath = self.tableView.indexPathForSelectedRow?.row
                 
-                //destinationVC.infoFilm = rssItems[indexPath!]
-                
-               // destinationVC.delegate!.rss(rssItems[indexPath!])
                 destinationVC.rss(rssItems[indexPath!])
                     
            // }

@@ -34,12 +34,8 @@ class DeteilViewController: UIViewController, DeteilViewControllerProtocol  {
         let request = NSURLRequest(URL: url!)
         NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()){
             (response: NSURLResponse?, data: NSData? , error: NSError?) -> Void in
-            let cv:CGSize = CGSizeMake(100, 100)
-            self.secImageLbl.sizeThatFits(cv)
             self.secImageLbl.image = UIImage(data: data!)
         }
-        
-        //secImageLbl.image = UIImage(data: NSData(contentsOfURL: url!)!)
         // Do any additional setup after loading the view.
     }
 
