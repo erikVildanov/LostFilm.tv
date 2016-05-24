@@ -74,66 +74,18 @@ class FeedParser: RssFilm, NSXMLParserDelegate {
         }
         
     }
-    var str = ""
     
     func parser(parser: NSXMLParser, foundCharacters string: String) {
-        var str = string
         switch currentElement {
-            case "title" : currentTitle += str
+            case "title" : currentTitle += string
             case "description" :
-             currentDescription = listMatches("http.*jpg", inString: str)
-//            var str: Array = [String](count: string.characters.count, repeatedValue: "")
-//            var k=0
-//            var j = 0
-//            var boo = false
-//            var boo1 = true
-//            for i in string.characters {
-//                str[k] = String(i)
-//                k += 1
-//            }
-//            if str.count>2 {
-//                while j<str.count-2 {
-//                if str[j] == "s" && str[j+1] == "r" && str[j+2] == "c" {
-//                    j = j + 5
-//                    boo = true
-//                }
-//                if boo {
-//                if str[j] == "\u{0022}" {break}
-//                else {
-//                    if (str[j] == "&") {
-//                        if boo1 {
-//                        currentDescription += "s:"
-//                        boo1 = false
-//                        j = j + 5
-//                        } else {
-//                            currentDescription += "."
-//                            j = j + 5
-//                        }
-//                    }
-//                    currentDescription += String(str[j])
-//                }
-//                }
-//                    j += 1
-//            }
-//            }
-            print(currentDescription)
-            
+             currentDescription = listMatches("http.*jpg", inString: string)
+             currentDescription = replaceMatches("&\\#58;", inString: currentDescription, withString: "s:")!
+             currentDescription = replaceMatches("&\\#46;", inString: currentDescription, withString: ".")!
             case "pubDate" :
-            var pub:Array = [String](count: string.characters.count, repeatedValue: "")
-            var k=0
-            for i in string.characters{
-                pub[k]=String(i)
-                k += 1
-            }
-             str = ""
-            if pub.count>1{
-                for i in 5...16{
-                    str += String(pub[i])
-                }
-            }
-            currentPubDate += str
+            currentPubDate  += listMatches("(................)", inString: string)
         case "link" :
-            currentLink += str
+            currentLink += string
         default : break
         }
     }
@@ -159,14 +111,19 @@ class FeedParser: RssFilm, NSXMLParserDelegate {
         let regex = try! NSRegularExpression(pattern: pattern, options: .AllowCommentsAndWhitespace)
         let range = NSMakeRange(0, string.characters.count)
         let matches = regex.firstMatchInString(string, options: .ReportCompletion, range: range)
-        
-        
         if matches != nil {
             return matches.map {
                 let range = $0.range
                 return (string as NSString).substringWithRange(range)
                 }!
         } else { return string }
+    }
+    
+    func replaceMatches(pattern: String, inString string: String, withString replacementString: String) -> String? {
+        let regex = try! NSRegularExpression(pattern: pattern, options: .AllowCommentsAndWhitespace)
+        let range = NSMakeRange(0, string.characters.count)
+        
+        return regex.stringByReplacingMatchesInString(string, options: .ReportCompletion, range: range, withTemplate: replacementString)
     }
     
 }
