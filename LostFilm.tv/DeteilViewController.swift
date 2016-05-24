@@ -17,9 +17,12 @@ class DeteilViewController: UIViewController, DeteilViewControllerProtocol  {
     
     @IBOutlet weak var secTitleLBl: UILabel!
     @IBOutlet weak var secPubDateLbl: UILabel!
-    @IBOutlet weak var secDescriptionLbl: UILabel!
     @IBOutlet weak var secImageLbl: UIImageView!
     
+    @IBAction func secLink(sender: UIButton) {
+        let url = NSURL(string: infoFilm.link)
+        UIApplication.sharedApplication().openURL(url!)
+    }
     
     //var delegate: DeteilViewControllerProtocol?
     
@@ -28,7 +31,6 @@ class DeteilViewController: UIViewController, DeteilViewControllerProtocol  {
     override func viewDidLoad() {
         super.viewDidLoad()
         secTitleLBl.text = infoFilm.title
-        secDescriptionLbl.text = infoFilm.description1
         secPubDateLbl.text = infoFilm.pubDate
         let url = NSURL(string: infoFilm.description1)
         let request = NSURLRequest(URL: url!)

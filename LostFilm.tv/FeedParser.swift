@@ -9,7 +9,6 @@
 import UIKit
 
 
-
 class FeedParser: RssFilm, NSXMLParserDelegate {
 
     private var rssItems : [RssFilm] = []
@@ -28,6 +27,11 @@ class FeedParser: RssFilm, NSXMLParserDelegate {
     private var currentDescription = "" {
         didSet {
             currentDescription = currentDescription.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+        }
+    }
+    private var currentLink = "" {
+        didSet {
+            currentLink = currentLink.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
         }
     }
     
@@ -66,6 +70,7 @@ class FeedParser: RssFilm, NSXMLParserDelegate {
             currentTitle = ""
             currentDescription = ""
             currentPubDate = ""
+            currentLink = ""
         }
         
     }
@@ -76,40 +81,42 @@ class FeedParser: RssFilm, NSXMLParserDelegate {
         switch currentElement {
             case "title" : currentTitle += str
             case "description" :
-            var str: Array = [String](count: string.characters.count, repeatedValue: "")
-            var k=0
-            var j = 0
-            var boo = false
-            var boo1 = true
-            for i in string.characters {
-                str[k] = String(i)
-                k += 1
-            }
-            if str.count>2 {
-                while j<str.count-2 {
-                if str[j] == "s" && str[j+1] == "r" && str[j+2] == "c" {
-                    j = j + 5
-                    boo = true
-                }
-                if boo {
-                if str[j] == "\u{0022}" {break}
-                else {
-                    if (str[j] == "&") {
-                        if boo1 {
-                        currentDescription += "s:"
-                        boo1 = false
-                        j = j + 5
-                        } else {
-                            currentDescription += "."
-                            j = j + 5
-                        }
-                    }
-                    currentDescription += String(str[j])
-                }
-                }
-                    j += 1
-            }
-            }
+             currentDescription = listMatches("http.*jpg", inString: str)
+//            var str: Array = [String](count: string.characters.count, repeatedValue: "")
+//            var k=0
+//            var j = 0
+//            var boo = false
+//            var boo1 = true
+//            for i in string.characters {
+//                str[k] = String(i)
+//                k += 1
+//            }
+//            if str.count>2 {
+//                while j<str.count-2 {
+//                if str[j] == "s" && str[j+1] == "r" && str[j+2] == "c" {
+//                    j = j + 5
+//                    boo = true
+//                }
+//                if boo {
+//                if str[j] == "\u{0022}" {break}
+//                else {
+//                    if (str[j] == "&") {
+//                        if boo1 {
+//                        currentDescription += "s:"
+//                        boo1 = false
+//                        j = j + 5
+//                        } else {
+//                            currentDescription += "."
+//                            j = j + 5
+//                        }
+//                    }
+//                    currentDescription += String(str[j])
+//                }
+//                }
+//                    j += 1
+//            }
+//            }
+            print(currentDescription)
             
             case "pubDate" :
             var pub:Array = [String](count: string.characters.count, repeatedValue: "")
@@ -125,6 +132,8 @@ class FeedParser: RssFilm, NSXMLParserDelegate {
                 }
             }
             currentPubDate += str
+        case "link" :
+            currentLink += str
         default : break
         }
     }
@@ -132,7 +141,7 @@ class FeedParser: RssFilm, NSXMLParserDelegate {
     func parser(parser: NSXMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
         
         if elementName == "item" {
-            let rssItem: RssFilm = RssFilm(title: currentTitle, description: currentDescription, pubDate: currentPubDate)
+            let rssItem: RssFilm = RssFilm(title: currentTitle, description: currentDescription, pubDate: currentPubDate, link: currentLink)
             
             rssItems += [rssItem]
         }
@@ -144,6 +153,20 @@ class FeedParser: RssFilm, NSXMLParserDelegate {
     
     func parser(parser: NSXMLParser, parseErrorOccurred parseError: NSError) {
         print("\(parseError.localizedDescription)")
-    } 
+    }
+    
+    func listMatches(pattern: String, inString string: String) -> String {
+        let regex = try! NSRegularExpression(pattern: pattern, options: .AllowCommentsAndWhitespace)
+        let range = NSMakeRange(0, string.characters.count)
+        let matches = regex.firstMatchInString(string, options: .ReportCompletion, range: range)
+        
+        
+        if matches != nil {
+            return matches.map {
+                let range = $0.range
+                return (string as NSString).substringWithRange(range)
+                }!
+        } else { return string }
+    }
     
 }
