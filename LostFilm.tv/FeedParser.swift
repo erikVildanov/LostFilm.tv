@@ -11,25 +11,25 @@ import UIKit
 
 class FeedParser: RssFilm, NSXMLParserDelegate {
 
-    private var rssItems : [RssFilm] = []
-    
-    private var currentElement = ""
-    private var currentTitle = "" {
+     var rssItems : [RssFilm] = []
+     
+     var currentElement = ""
+     var currentTitle = "" {
         didSet {
             currentTitle = currentTitle.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
         }
     }
-    private var currentPubDate = "" {
+     var currentPubDate = "" {
         didSet {
             currentPubDate = currentPubDate.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
         }
     }
-    private var currentDescription = "" {
+     var currentDescription = "" {
         didSet {
             currentDescription = currentDescription.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
         }
     }
-    private var currentLink = "" {
+     var currentLink = "" {
         didSet {
             currentLink = currentLink.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
         }

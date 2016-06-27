@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8B6508CB1CF83D7300438E5F /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6508CA1CF83D7300438E5F /* Networking.swift */; };
 		8B6F72FA1CE3055C008500EE /* rssFilm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6F72F91CE3055C008500EE /* rssFilm.swift */; };
 		8B7825471CDAF8E700AD9B30 /* DeteilViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7825461CDAF8E700AD9B30 /* DeteilViewController.swift */; };
 		8BCF90F91CD28215001FD300 /* FeedParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCF90F61CD28215001FD300 /* FeedParser.swift */; };
@@ -19,13 +20,26 @@
 		E339BC3E1CD1D87300844F96 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E339BC3C1CD1D87300844F96 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		8B6509031CF86F6400438E5F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E339BC251CD1D87300844F96 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E339BC2C1CD1D87300844F96;
+			remoteInfo = LostFilm;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		8B6508C81CF83D7300438E5F /* Networking.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Networking.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8B6508CA1CF83D7300438E5F /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
+		8B6508CC1CF83D7300438E5F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8B6F72F91CE3055C008500EE /* rssFilm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = rssFilm.swift; sourceTree = "<group>"; };
 		8B7825461CDAF8E700AD9B30 /* DeteilViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeteilViewController.swift; sourceTree = "<group>"; };
 		8BCF90F61CD28215001FD300 /* FeedParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedParser.swift; sourceTree = "<group>"; };
 		8BCF90F71CD28215001FD300 /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		8BCF90F81CD28215001FD300 /* FilmTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilmTableViewController.swift; sourceTree = "<group>"; };
-		E339BC2D1CD1D87300844F96 /* LostFilm.tv.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LostFilm.tv.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E339BC2D1CD1D87300844F96 /* LostFilm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LostFilm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E339BC301CD1D87300844F96 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E339BC351CD1D87300844F96 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E339BC381CD1D87300844F96 /* LostFilm_tv.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LostFilm_tv.xcdatamodel; sourceTree = "<group>"; };
@@ -35,6 +49,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		8B6508C51CF83D7300438E5F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E339BC2A1CD1D87300844F96 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -45,10 +66,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8B6508C91CF83D7300438E5F /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				8B6508CA1CF83D7300438E5F /* Networking.swift */,
+				8B6508CC1CF83D7300438E5F /* Info.plist */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
 		E339BC241CD1D87300844F96 = {
 			isa = PBXGroup;
 			children = (
-				E339BC2F1CD1D87300844F96 /* LostFilm.tv */,
+				E339BC2F1CD1D87300844F96 /* LostFilm */,
+				8B6508C91CF83D7300438E5F /* Networking */,
 				E339BC2E1CD1D87300844F96 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -56,12 +87,13 @@
 		E339BC2E1CD1D87300844F96 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E339BC2D1CD1D87300844F96 /* LostFilm.tv.app */,
+				E339BC2D1CD1D87300844F96 /* LostFilm.app */,
+				8B6508C81CF83D7300438E5F /* Networking.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		E339BC2F1CD1D87300844F96 /* LostFilm.tv */ = {
+		E339BC2F1CD1D87300844F96 /* LostFilm */ = {
 			isa = PBXGroup;
 			children = (
 				8BCF90F61CD28215001FD300 /* FeedParser.swift */,
@@ -76,15 +108,34 @@
 				E339BC3F1CD1D87300844F96 /* Info.plist */,
 				E339BC371CD1D87300844F96 /* LostFilm_tv.xcdatamodeld */,
 			);
+			name = LostFilm;
 			path = LostFilm.tv;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		E339BC2C1CD1D87300844F96 /* LostFilm.tv */ = {
+		8B6508C71CF83D7300438E5F /* Networking */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E339BC421CD1D87300844F96 /* Build configuration list for PBXNativeTarget "LostFilm.tv" */;
+			buildConfigurationList = 8B6508D11CF83D7300438E5F /* Build configuration list for PBXNativeTarget "Networking" */;
+			buildPhases = (
+				8B6508C41CF83D7300438E5F /* Sources */,
+				8B6508C51CF83D7300438E5F /* Frameworks */,
+				8B6508C61CF83D7300438E5F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8B6509041CF86F6400438E5F /* PBXTargetDependency */,
+			);
+			name = Networking;
+			productName = Networking;
+			productReference = 8B6508C81CF83D7300438E5F /* Networking.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		E339BC2C1CD1D87300844F96 /* LostFilm */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E339BC421CD1D87300844F96 /* Build configuration list for PBXNativeTarget "LostFilm" */;
 			buildPhases = (
 				E339BC291CD1D87300844F96 /* Sources */,
 				E339BC2A1CD1D87300844F96 /* Frameworks */,
@@ -94,9 +145,9 @@
 			);
 			dependencies = (
 			);
-			name = LostFilm.tv;
+			name = LostFilm;
 			productName = LostFilm.tv;
-			productReference = E339BC2D1CD1D87300844F96 /* LostFilm.tv.app */;
+			productReference = E339BC2D1CD1D87300844F96 /* LostFilm.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -105,16 +156,22 @@
 		E339BC251CD1D87300844F96 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Эрик Вильданов";
 				TargetAttributes = {
+					8B6508C71CF83D7300438E5F = {
+						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = D423L8TC7V;
+						TestTargetID = E339BC2C1CD1D87300844F96;
+					};
 					E339BC2C1CD1D87300844F96 = {
 						CreatedOnToolsVersion = 7.0;
 						DevelopmentTeam = D423L8TC7V;
 					};
 				};
 			};
-			buildConfigurationList = E339BC281CD1D87300844F96 /* Build configuration list for PBXProject "LostFilm.tv" */;
+			buildConfigurationList = E339BC281CD1D87300844F96 /* Build configuration list for PBXProject "LostFilm" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -127,12 +184,20 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				E339BC2C1CD1D87300844F96 /* LostFilm.tv */,
+				E339BC2C1CD1D87300844F96 /* LostFilm */,
+				8B6508C71CF83D7300438E5F /* Networking */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		8B6508C61CF83D7300438E5F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E339BC2B1CD1D87300844F96 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -146,6 +211,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		8B6508C41CF83D7300438E5F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8B6508CB1CF83D7300438E5F /* Networking.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E339BC291CD1D87300844F96 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -161,6 +234,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		8B6509041CF86F6400438E5F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E339BC2C1CD1D87300844F96 /* LostFilm */;
+			targetProxy = 8B6509031CF86F6400438E5F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		E339BC341CD1D87300844F96 /* Main.storyboard */ = {
@@ -182,6 +263,36 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		8B6508CF1CF83D7300438E5F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				DEFINES_MODULE = YES;
+				INFOPLIST_FILE = Networking/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = BOTcompany.Networking;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LostFilm.app/LostFilm";
+			};
+			name = Debug;
+		};
+		8B6508D01CF83D7300438E5F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				DEFINES_MODULE = YES;
+				INFOPLIST_FILE = Networking/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = BOTcompany.Networking;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LostFilm.app/LostFilm";
+			};
+			name = Release;
+		};
 		E339BC401CD1D87300844F96 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -288,7 +399,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		E339BC281CD1D87300844F96 /* Build configuration list for PBXProject "LostFilm.tv" */ = {
+		8B6508D11CF83D7300438E5F /* Build configuration list for PBXNativeTarget "Networking" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8B6508CF1CF83D7300438E5F /* Debug */,
+				8B6508D01CF83D7300438E5F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		E339BC281CD1D87300844F96 /* Build configuration list for PBXProject "LostFilm" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E339BC401CD1D87300844F96 /* Debug */,
@@ -297,7 +416,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E339BC421CD1D87300844F96 /* Build configuration list for PBXNativeTarget "LostFilm.tv" */ = {
+		E339BC421CD1D87300844F96 /* Build configuration list for PBXNativeTarget "LostFilm" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E339BC431CD1D87300844F96 /* Debug */,

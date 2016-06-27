@@ -8,17 +8,15 @@
 
 import UIKit
 
-class FilmTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate{
+public class FilmTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate{
     
     @IBOutlet weak var tableView: UITableView!
     var rssItems: [RssFilm] = []
-    private var tablData = [String]()
-    private var tableViewController = UITableViewController(style: .Plain)
     
     var refreshControl = UIRefreshControl()
     var dateFormatter = NSDateFormatter()
     
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
         
         // set up the refresh control
@@ -27,11 +25,13 @@ class FilmTableViewController: UIViewController, UITableViewDataSource, UITableV
         self.tableView?.addSubview(refreshControl)
         
         
-        loadRssFilm()   
+        loadRssFilm {
+            self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .None)
+        }
 
     }
     
-    func loadRssFilm(){
+    func loadRssFilm(completion: (Void -> Void)?){
         let feedParser = FeedParser()
         
         feedParser.parseFeed("https://www.lostfilm.tv/rssdd.xml", completionHandler:
@@ -40,17 +40,20 @@ class FilmTableViewController: UIViewController, UITableViewDataSource, UITableV
                 
                 self.rssItems = rssItems
                 
-                if self.tableView != nil {
+//                if self.tableView != nil {
                     dispatch_async(dispatch_get_main_queue(), {
-                        self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .None)
+//                        self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .None)
+                        completion?()
                     })
-                }
+//                }
                 
         })
     }
     
     func refresh(sender:AnyObject) {
-        loadRssFilm()
+        loadRssFilm {
+            self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .None)
+        }
         if self.refreshControl.refreshing
         {
             self.refreshControl.endRefreshing()
@@ -60,12 +63,12 @@ class FilmTableViewController: UIViewController, UITableViewDataSource, UITableV
 
     // MARK: - Table view data source
 
-     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+     public func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
-     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+     public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         if let rss: [RssFilm] = self.rssItems{
             return rss.count
@@ -75,7 +78,7 @@ class FilmTableViewController: UIViewController, UITableViewDataSource, UITableV
     }
 
     
-     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+     public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! TableViewCell
         
         if let item: RssFilm = rssItems[indexPath.row]{
@@ -95,7 +98,7 @@ class FilmTableViewController: UIViewController, UITableViewDataSource, UITableV
         return cell
     }
     
-        override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        override public func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     
            // if segue.identifier == "pushSecond" {
                 let destinationVC = segue.destinationViewController as! DeteilViewControllerProtocol

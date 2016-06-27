@@ -8,14 +8,13 @@
 
 import UIKit
 
-
 class RssFilm: NSObject {
     var title:String
     var description1: String
     var pubDate: String
     var link: String
     
-     override init() {
+    override init() {
         self.title = ""
         self.description1 = ""
         self.pubDate = ""

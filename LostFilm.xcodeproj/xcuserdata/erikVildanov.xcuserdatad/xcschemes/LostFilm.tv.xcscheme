@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "E339BC2C1CD1D87300844F96"
-               BuildableName = "LostFilm.tv.app"
-               BlueprintName = "LostFilm.tv"
-               ReferencedContainer = "container:LostFilm.tv.xcodeproj">
+               BuildableName = "LostFilm.app"
+               BlueprintName = "LostFilm"
+               ReferencedContainer = "container:LostFilm.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -28,14 +28,24 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "8B6508C71CF83D7300438E5F"
+               BuildableName = "Networking.xctest"
+               BlueprintName = "Networking"
+               ReferencedContainer = "container:LostFilm.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E339BC2C1CD1D87300844F96"
-            BuildableName = "LostFilm.tv.app"
-            BlueprintName = "LostFilm.tv"
-            ReferencedContainer = "container:LostFilm.tv.xcodeproj">
+            BuildableName = "LostFilm.app"
+            BlueprintName = "LostFilm"
+            ReferencedContainer = "container:LostFilm.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -56,9 +66,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E339BC2C1CD1D87300844F96"
-            BuildableName = "LostFilm.tv.app"
-            BlueprintName = "LostFilm.tv"
-            ReferencedContainer = "container:LostFilm.tv.xcodeproj">
+            BuildableName = "LostFilm.app"
+            BlueprintName = "LostFilm"
+            ReferencedContainer = "container:LostFilm.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -75,9 +85,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E339BC2C1CD1D87300844F96"
-            BuildableName = "LostFilm.tv.app"
-            BlueprintName = "LostFilm.tv"
-            ReferencedContainer = "container:LostFilm.tv.xcodeproj">
+            BuildableName = "LostFilm.app"
+            BlueprintName = "LostFilm"
+            ReferencedContainer = "container:LostFilm.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
