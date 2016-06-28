@@ -14,6 +14,11 @@ class TableViewCell: UITableViewCell {
     @IBOutlet weak var pubDateLbl: UILabel!
     @IBOutlet weak var img: UIImageView!
     
+    override func prepareForReuse() {
+        img.image = nil
+        titleLbl.text = nil
+        pubDateLbl.text = nil        
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()

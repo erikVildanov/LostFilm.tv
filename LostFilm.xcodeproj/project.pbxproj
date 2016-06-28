@@ -10,6 +10,7 @@
 		8B6508CB1CF83D7300438E5F /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6508CA1CF83D7300438E5F /* Networking.swift */; };
 		8B6F72FA1CE3055C008500EE /* rssFilm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6F72F91CE3055C008500EE /* rssFilm.swift */; };
 		8B7825471CDAF8E700AD9B30 /* DeteilViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7825461CDAF8E700AD9B30 /* DeteilViewController.swift */; };
+		8BBE235F1D226E32003FBB26 /* TableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBE235E1D226E32003FBB26 /* TableDataSource.swift */; };
 		8BCF90F91CD28215001FD300 /* FeedParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCF90F61CD28215001FD300 /* FeedParser.swift */; };
 		8BCF90FA1CD28215001FD300 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCF90F71CD28215001FD300 /* TableViewCell.swift */; };
 		8BCF90FB1CD28215001FD300 /* FilmTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCF90F81CD28215001FD300 /* FilmTableViewController.swift */; };
@@ -36,6 +37,7 @@
 		8B6508CC1CF83D7300438E5F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8B6F72F91CE3055C008500EE /* rssFilm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = rssFilm.swift; sourceTree = "<group>"; };
 		8B7825461CDAF8E700AD9B30 /* DeteilViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeteilViewController.swift; sourceTree = "<group>"; };
+		8BBE235E1D226E32003FBB26 /* TableDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableDataSource.swift; sourceTree = "<group>"; };
 		8BCF90F61CD28215001FD300 /* FeedParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedParser.swift; sourceTree = "<group>"; };
 		8BCF90F71CD28215001FD300 /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		8BCF90F81CD28215001FD300 /* FilmTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilmTableViewController.swift; sourceTree = "<group>"; };
@@ -98,6 +100,7 @@
 			children = (
 				8BCF90F61CD28215001FD300 /* FeedParser.swift */,
 				8BCF90F71CD28215001FD300 /* TableViewCell.swift */,
+				8BBE235E1D226E32003FBB26 /* TableDataSource.swift */,
 				8BCF90F81CD28215001FD300 /* FilmTableViewController.swift */,
 				E339BC301CD1D87300844F96 /* AppDelegate.swift */,
 				8B7825461CDAF8E700AD9B30 /* DeteilViewController.swift */,
@@ -226,6 +229,7 @@
 				8B6F72FA1CE3055C008500EE /* rssFilm.swift in Sources */,
 				8B7825471CDAF8E700AD9B30 /* DeteilViewController.swift in Sources */,
 				8BCF90FA1CD28215001FD300 /* TableViewCell.swift in Sources */,
+				8BBE235F1D226E32003FBB26 /* TableDataSource.swift in Sources */,
 				8BCF90FB1CD28215001FD300 /* FilmTableViewController.swift in Sources */,
 				8BCF90F91CD28215001FD300 /* FeedParser.swift in Sources */,
 				E339BC311CD1D87300844F96 /* AppDelegate.swift in Sources */,
@@ -406,6 +410,7 @@
 				8B6508D01CF83D7300438E5F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E339BC281CD1D87300844F96 /* Build configuration list for PBXProject "LostFilm" */ = {
 			isa = XCConfigurationList;

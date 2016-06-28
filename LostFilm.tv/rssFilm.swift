@@ -8,25 +8,50 @@
 
 import UIKit
 
-class RssFilm: NSObject {
-    var title:String
-    var description1: String
-    var pubDate: String
-    var link: String
+struct RssFilm {
+    let title: String
+    let description: String
+    let pubDate: String
+    let link: String
+}
+
+class RssFilmBuilder: NSObject {
+    
+    var title: String = ""
+    var filmDescription: String = ""
+    var pubDate: String = ""
+    var link: String = ""
+    var flagFulFilm: Bool = false
     
     override init() {
-        self.title = ""
-        self.description1 = ""
-        self.pubDate = ""
-        self.link = ""
+        title = ""
+        filmDescription = ""
+        pubDate = ""
+        link = ""
     }
     
     init(title: String, description: String, pubDate: String, link: String){
         self.title = title
-        self.description1 = description
+        self.filmDescription = description
         self.pubDate = pubDate
         self.link = link
-    }    
+    }
+    
+    func startBuilder(){
+        flagFulFilm = true
+        title = ""
+        filmDescription = ""
+        pubDate = ""
+        link = ""
+    }
+    
+    func endBuilder() -> RssFilm? {
+        if flagFulFilm {
+            flagFulFilm = false
+            return RssFilm(title: title, description: filmDescription, pubDate: pubDate, link: link)
+        } else {
+            flagFulFilm = false
+            return nil
+        }
+    }
 }
-
-

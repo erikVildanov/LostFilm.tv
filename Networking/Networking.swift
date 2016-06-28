@@ -27,8 +27,8 @@ class Networking: XCTestCase {
     //мок объекты тесты (сетевую надо заменить мок объектом)
     //в парсере нужно выделить сетевой запрос и заменить его мок объетами
     func testOne(){
-        let film = RssFilm()
-        XCTAssert(film.description1 == "")
+        let film = RssFilmBuilder()
+        XCTAssert(film.filmDescription == "")
     }
     
     func testFilmTableHasTableViewPropertySetAfterLoading() {
@@ -69,31 +69,31 @@ class Networking: XCTestCase {
         let feedParser = FeedParser()
         let mock = MockFeedParser()
         
-        feedParser.currentElement = "description"
+        feedParser.Element = "description"
         feedParser.parser(mock.data, foundCharacters: mock.mockDescription)
-        XCTAssertTrue(feedParser.currentDescription == "http.1.jpg")
+        XCTAssertTrue(feedParser.rssItem.filmDescription == "http.1.jpg")
         
-        feedParser.currentElement = "title"
+        feedParser.Element = "title"
         feedParser.parser(mock.data, foundCharacters: mock.mockTitle)
-        XCTAssertTrue(feedParser.currentTitle == "TITLE")
+        XCTAssertTrue(feedParser.rssItem.title == "TITLE")
         
-        feedParser.currentElement = "pubDate"
+        feedParser.Element = "pubDate"
         feedParser.parser(mock.data, foundCharacters: mock.mockPubDate)
-        XCTAssertTrue(feedParser.currentPubDate == "27.06.16")
+        XCTAssertTrue(feedParser.rssItem.pubDate == "27.06.16")
         
-        feedParser.currentElement = "link"
+        feedParser.Element = "link"
         feedParser.parser(mock.data, foundCharacters: mock.mockLink)
-        XCTAssertTrue(feedParser.currentLink == "www.vk.com")
+        XCTAssertTrue(feedParser.rssItem.link == "www.vk.com")
     }
     
     func testParser5() {
         let feedParser = FeedParser()
         let mock = MockFeedParser()
         feedParser.parser(mock.data, didStartElement: mock.mockElement, namespaceURI: nil, qualifiedName: nil, attributes: ["version": "0.91"])
-        XCTAssertTrue(feedParser.currentElement == "item" && feedParser.currentDescription == "" && feedParser.currentLink == "" && feedParser.currentPubDate == "" && feedParser.currentTitle == "")
+        XCTAssertTrue(feedParser.Element == "item" && feedParser.rssItem.filmDescription == "" && feedParser.rssItem.link == "" && feedParser.rssItem.pubDate == "" && feedParser.rssItem.title == "")
     }
     
-    class MockFeedParser: RssFilm, NSXMLParserDelegate {
+    class MockFeedParser: RssFilmBuilder, NSXMLParserDelegate {
         var data = NSXMLParser()
         var mockElement = "item"
         var mockTitle = "TITLE"

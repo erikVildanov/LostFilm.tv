@@ -12,22 +12,24 @@ public class FilmTableViewController: UIViewController, UITableViewDataSource, U
     
     @IBOutlet weak var tableView: UITableView!
     var rssItems: [RssFilm] = []
-    
     var refreshControl = UIRefreshControl()
     var dateFormatter = NSDateFormatter()
+    var tableData = TableDataSource()
     
-    override public func viewDidLoad() {
-        super.viewDidLoad()
-        
-        // set up the refresh control
+    func refreshTable(){        // set up the refresh control
         self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
         self.refreshControl.addTarget(self, action: #selector(FilmTableViewController.refresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
         self.tableView?.addSubview(refreshControl)
-        
-        
+    }
+    
+    override public func viewDidLoad() {
+        super.viewDidLoad()
+        refreshTable()
         loadRssFilm {
             self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .None)
         }
+        
+        tableView.dataSource = tableData.rssItems
 
     }
     
@@ -37,16 +39,10 @@ public class FilmTableViewController: UIViewController, UITableViewDataSource, U
         feedParser.parseFeed("https://www.lostfilm.tv/rssdd.xml", completionHandler:
             {
                 (rssItems:[RssFilm]) -> Void in
-                
                 self.rssItems = rssItems
-                
-//                if self.tableView != nil {
                     dispatch_async(dispatch_get_main_queue(), {
-//                        self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .None)
                         completion?()
                     })
-//                }
-                
         })
     }
     
@@ -84,7 +80,7 @@ public class FilmTableViewController: UIViewController, UITableViewDataSource, U
         if let item: RssFilm = rssItems[indexPath.row]{
             cell.titleLbl.text = item.title
             
-            let url = NSURL(string: item.description1)
+            let url = NSURL(string: item.description)
             let request = NSURLRequest(URL: url!)
             NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()){
             (response: NSURLResponse?, data: NSData? , error: NSError?) -> Void in
@@ -99,14 +95,12 @@ public class FilmTableViewController: UIViewController, UITableViewDataSource, U
     }
     
         override public func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    
-           // if segue.identifier == "pushSecond" {
+            
                 let destinationVC = segue.destinationViewController as! DeteilViewControllerProtocol
                 let indexPath = self.tableView.indexPathForSelectedRow?.row
                 
                 destinationVC.rss(rssItems[indexPath!])
-                    
-           // }
+            
     
         }
     

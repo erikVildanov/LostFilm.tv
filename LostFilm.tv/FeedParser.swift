@@ -8,34 +8,19 @@
 
 import UIKit
 
+extension String{
+    var deleteSpase: String {return self.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())}
+}
 
-class FeedParser: RssFilm, NSXMLParserDelegate {
+
+class FeedParser: RssFilmBuilder, NSXMLParserDelegate {
 
      var rssItems : [RssFilm] = []
-     
-     var currentElement = ""
-     var currentTitle = "" {
-        didSet {
-            currentTitle = currentTitle.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
-        }
-    }
-     var currentPubDate = "" {
-        didSet {
-            currentPubDate = currentPubDate.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
-        }
-    }
-     var currentDescription = "" {
-        didSet {
-            currentDescription = currentDescription.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
-        }
-    }
-     var currentLink = "" {
-        didSet {
-            currentLink = currentLink.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
-        }
-    }
+     var rssItem: RssFilmBuilder = RssFilmBuilder()
+     var Element = ""
     
     private var parserCompletionHandler:([RssFilm] -> Void )?
+    
     
     func parseFeed (feedUrl: String, completionHandler: ([RssFilm] -> Void)?) -> Void {
         
@@ -64,41 +49,37 @@ class FeedParser: RssFilm, NSXMLParserDelegate {
     }
     
     func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
-        currentElement = elementName
-        
-        if currentElement == "item" {
-            currentTitle = ""
-            currentDescription = ""
-            currentPubDate = ""
-            currentLink = ""
+        Element = elementName
+        if Element == "item" {
+            rssItem.startBuilder()
         }
-        
+            
     }
     
     func parser(parser: NSXMLParser, foundCharacters string: String) {
-        switch currentElement {
-            case "title" : currentTitle += string
+        switch Element {
+            case "title" :
+                rssItem.title += string.deleteSpase
             case "description" :
-             currentDescription = listMatches("http.*jpg", inString: string)
-             currentDescription = replaceMatches("&\\#58;", inString: currentDescription, withString: "s:")!
-             currentDescription = replaceMatches("&\\#46;", inString: currentDescription, withString: ".")!
+                var str = listMatches("http.*jpg", inString: string)
+                str = replaceMatches("&\\#58;", inString: str, withString: "s:")!
+                str = replaceMatches("&\\#46;", inString: str, withString: ".")!
+            rssItem.filmDescription = str.deleteSpase
             case "pubDate" :
-            currentPubDate  += listMatches("(................)", inString: string)
-        case "link" :
-            currentLink += string
-        default : break
-        }
+                rssItem.pubDate += listMatches("(................)", inString: string).deleteSpase
+            case "link" :
+                rssItem.link += string.deleteSpase
+            default : break
+            }
     }
-    
     func parser(parser: NSXMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
         
-        if elementName == "item" {
-            let rssItem: RssFilm = RssFilm(title: currentTitle, description: currentDescription, pubDate: currentPubDate, link: currentLink)
-            
-            rssItems += [rssItem]
+        guard elementName == "item" else { return }
+        
+        if let rssFilm = rssItem.endBuilder() {
+            rssItems.append(rssFilm)
         }
     }
-    
     func parserDidEndDocument(parser: NSXMLParser) {
         self.parserCompletionHandler?(rssItems)
     }

@@ -26,13 +26,13 @@ class DeteilViewController: UIViewController, DeteilViewControllerProtocol  {
     
     //var delegate: DeteilViewControllerProtocol?
     
-    var infoFilm = RssFilm()
+    var infoFilm = RssFilm(title: "", description: "", pubDate: "", link: "")
     
     override func viewDidLoad() {
         super.viewDidLoad()
         secTitleLBl.text = infoFilm.title
         secPubDateLbl.text = infoFilm.pubDate
-        let url = NSURL(string: infoFilm.description1)
+        let url = NSURL(string: infoFilm.description)
         let request = NSURLRequest(URL: url!)
         NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()){
             (response: NSURLResponse?, data: NSData? , error: NSError?) -> Void in
