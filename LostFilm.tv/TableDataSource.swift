@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TableDataSource: NSObject, UITableViewDataSource {
+class TableDataSource: NSObject, UITableViewDataSource, NSURLSessionDelegate {
     var dataFilm: [RssFilm] = []
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int
@@ -18,32 +18,31 @@ class TableDataSource: NSObject, UITableViewDataSource {
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        if let rss: [RssFilm] = dataFilm{
-            return rss.count
-        } else {
-            return 0
-        }
+        return dataFilm.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
-        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! TableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
+            as! TableViewCell
         
-        if let item: RssFilm = dataFilm[indexPath.row]{
+        let item: RssFilm = dataFilm[indexPath.row]
             cell.titleLbl.text = item.title
-            
-            let url = NSURL(string: item.description)
-            let request = NSURLRequest(URL: url!)
-            NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()){
-                (response: NSURLResponse?, data: NSData? , error: NSError?) -> Void in
-                
-                cell.img.image = UIImage(data: data!)
-            }
-            
-            cell.pubDateLbl.text = item.pubDate
+        
+            if let url = NSURL(string: item.description) {
+                let request = NSURLRequest(URL:  url)
+                let config = NSURLSessionConfiguration.defaultSessionConfiguration()
+                let session = NSURLSession(configuration: config,delegate: self,
+                                           delegateQueue:NSOperationQueue.mainQueue())
+                 let task = session.dataTaskWithRequest(request, completionHandler: {data, _, _ -> Void in
+                    if let data = data {
+                    cell.img.image = UIImage(data: data)
+                    }
+                })
+                task.resume()
         }
+            cell.pubDateLbl.text = item.pubDate
         
         return cell
     }
-    
 }

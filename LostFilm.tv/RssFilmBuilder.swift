@@ -8,13 +8,6 @@
 
 import UIKit
 
-struct RssFilm {
-    let title: String
-    let description: String
-    let pubDate: String
-    let link: String
-}
-
 class RssFilmBuilder: NSObject {
     
     var title: String = ""

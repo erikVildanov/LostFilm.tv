@@ -15,8 +15,8 @@ extension String{
 
 class FeedParser: RssFilmBuilder, NSXMLParserDelegate {
 
-     var rssItems : [RssFilm] = []
-     var rssItem: RssFilmBuilder = RssFilmBuilder()
+     var arrayRssItemFilm : [RssFilm] = []
+     let rssItemFilmBuilder: RssFilmBuilder = RssFilmBuilder()
      var Element = ""
     
     private var parserCompletionHandler:([RssFilm] -> Void )?
@@ -45,13 +45,13 @@ class FeedParser: RssFilmBuilder, NSXMLParserDelegate {
     }
     
     func parserDidStartDocument(parser: NSXMLParser) {
-        rssItems = []
+        arrayRssItemFilm = []
     }
     
     func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
         Element = elementName
         if Element == "item" {
-            rssItem.startBuilder()
+            rssItemFilmBuilder.startBuilder()
         }
             
     }
@@ -59,16 +59,16 @@ class FeedParser: RssFilmBuilder, NSXMLParserDelegate {
     func parser(parser: NSXMLParser, foundCharacters string: String) {
         switch Element {
             case "title" :
-                rssItem.title += string.deleteSpase
+                rssItemFilmBuilder.title += string.deleteSpase
             case "description" :
                 var str = listMatches("http.*jpg", inString: string)
                 str = replaceMatches("&\\#58;", inString: str, withString: "s:")!
                 str = replaceMatches("&\\#46;", inString: str, withString: ".")!
-            rssItem.filmDescription = str.deleteSpase
+            rssItemFilmBuilder.filmDescription = str.deleteSpase
             case "pubDate" :
-                rssItem.pubDate += listMatches("(................)", inString: string).deleteSpase
+                rssItemFilmBuilder.pubDate += listMatches("(................)", inString: string).deleteSpase
             case "link" :
-                rssItem.link += string.deleteSpase
+                rssItemFilmBuilder.link += string.deleteSpase
             default : break
             }
     }
@@ -76,12 +76,12 @@ class FeedParser: RssFilmBuilder, NSXMLParserDelegate {
         
         guard elementName == "item" else { return }
         
-        if let rssFilm = rssItem.endBuilder() {
-            rssItems.append(rssFilm)
+        if let rssFilm = rssItemFilmBuilder.endBuilder() {
+            arrayRssItemFilm.append(rssFilm)
         }
     }
     func parserDidEndDocument(parser: NSXMLParser) {
-        self.parserCompletionHandler?(rssItems)
+        self.parserCompletionHandler?(arrayRssItemFilm)
     }
     
     func parser(parser: NSXMLParser, parseErrorOccurred parseError: NSError) {

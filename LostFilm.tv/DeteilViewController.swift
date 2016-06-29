@@ -32,11 +32,18 @@ class DeteilViewController: UIViewController, DeteilViewControllerProtocol  {
         super.viewDidLoad()
         secTitleLBl.text = infoFilm.title
         secPubDateLbl.text = infoFilm.pubDate
-        let url = NSURL(string: infoFilm.description)
-        let request = NSURLRequest(URL: url!)
-        NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()){
-            (response: NSURLResponse?, data: NSData? , error: NSError?) -> Void in
-            self.secImageLbl.image = UIImage(data: data!)
+        
+        if let url = NSURL(string: infoFilm.description) {
+            let request = NSURLRequest(URL:  url)
+            let config = NSURLSessionConfiguration.defaultSessionConfiguration()
+            let session = NSURLSession(configuration: config,delegate: nil,
+                                       delegateQueue:NSOperationQueue.mainQueue())
+            let task = session.dataTaskWithRequest(request, completionHandler: {data, _, _ -> Void in
+                if let data = data {
+                    self.secImageLbl.image = UIImage(data: data)
+                }
+            })
+            task.resume()
         }
         // Do any additional setup after loading the view.
     }
