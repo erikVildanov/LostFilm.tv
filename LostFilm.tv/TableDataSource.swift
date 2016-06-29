@@ -9,7 +9,7 @@
 import UIKit
 
 class TableDataSource: NSObject, UITableViewDataSource {
-    var dataFilm = FeedParser()
+    var dataFilm: [RssFilm] = []
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int
     {
@@ -18,14 +18,18 @@ class TableDataSource: NSObject, UITableViewDataSource {
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        return dataFilm.rssItems.count
+        if let rss: [RssFilm] = dataFilm{
+            return rss.count
+        } else {
+            return 0
+        }
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! TableViewCell
         
-        if let item: RssFilm = dataFilm.rssItems[indexPath.row]{
+        if let item: RssFilm = dataFilm[indexPath.row]{
             cell.titleLbl.text = item.title
             
             let url = NSURL(string: item.description)

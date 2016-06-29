@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class FilmTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate{
+public class FilmTableViewController: UIViewController, UITableViewDelegate{
     
     @IBOutlet weak var tableView: UITableView!
     var rssItems: [RssFilm] = []
@@ -28,9 +28,7 @@ public class FilmTableViewController: UIViewController, UITableViewDataSource, U
         loadRssFilm {
             self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .None)
         }
-        
-        tableView.dataSource = tableData.rssItems
-
+        tableView.dataSource = tableData
     }
     
     func loadRssFilm(completion: (Void -> Void)?){
@@ -39,7 +37,7 @@ public class FilmTableViewController: UIViewController, UITableViewDataSource, U
         feedParser.parseFeed("https://www.lostfilm.tv/rssdd.xml", completionHandler:
             {
                 (rssItems:[RssFilm]) -> Void in
-                self.rssItems = rssItems
+                self.tableData.dataFilm = rssItems
                     dispatch_async(dispatch_get_main_queue(), {
                         completion?()
                     })
@@ -56,50 +54,13 @@ public class FilmTableViewController: UIViewController, UITableViewDataSource, U
         }
     }
 
-
-    // MARK: - Table view data source
-
-     public func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
-    }
-
-     public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        if let rss: [RssFilm] = self.rssItems{
-            return rss.count
-        } else {
-            return 0
-        }
-    }
-
-    
-     public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! TableViewCell
-        
-        if let item: RssFilm = rssItems[indexPath.row]{
-            cell.titleLbl.text = item.title
-            
-            let url = NSURL(string: item.description)
-            let request = NSURLRequest(URL: url!)
-            NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()){
-            (response: NSURLResponse?, data: NSData? , error: NSError?) -> Void in
-                
-            cell.img.image = UIImage(data: data!)
-            }
-            
-            cell.pubDateLbl.text = item.pubDate
-        }
-        
-        return cell
-    }
     
         override public func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
             
                 let destinationVC = segue.destinationViewController as! DeteilViewControllerProtocol
                 let indexPath = self.tableView.indexPathForSelectedRow?.row
                 
-                destinationVC.rss(rssItems[indexPath!])
+                destinationVC.rss(tableData.dataFilm[indexPath!])
             
     
         }
