@@ -37,6 +37,11 @@ class TableDataSource: NSObject, UITableViewDataSource, NSURLSessionDelegate {
                  let task = session.dataTaskWithRequest(request, completionHandler: {data, _, _ -> Void in
                     if let data = data {
                     cell.img.image = UIImage(data: data)
+                        if let sizeImg = cell.img.image {
+                        let lambda = 100/sizeImg.size.height
+                            cell.img.frame.size.width = sizeImg.size.width*lambda
+                            cell.img.frame.size.height = sizeImg.size.height*lambda
+                        }
                     }
                 })
                 task.resume()

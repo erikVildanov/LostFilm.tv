@@ -17,7 +17,7 @@ class DeteilViewController: UIViewController, DeteilViewControllerProtocol  {
     
     
  
-    @IBOutlet weak var stackView: UIStackView!
+    //@IBOutlet weak var stackView: UIStackView!
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var secTitleLBl: UILabel!
