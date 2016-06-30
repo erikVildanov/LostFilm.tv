@@ -15,6 +15,11 @@ protocol DeteilViewControllerProtocol {
 
 class DeteilViewController: UIViewController, DeteilViewControllerProtocol  {
     
+    
+ 
+    @IBOutlet weak var stackView: UIStackView!
+    
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var secTitleLBl: UILabel!
     @IBOutlet weak var secPubDateLbl: UILabel!
     @IBOutlet weak var secImageLbl: UIImageView!
@@ -24,14 +29,18 @@ class DeteilViewController: UIViewController, DeteilViewControllerProtocol  {
         UIApplication.sharedApplication().openURL(url!)
     }
     
-    //var delegate: DeteilViewControllerProtocol?
-    
-    var infoFilm = RssFilm(title: "", description: "", pubDate: "", link: "")
+    @IBAction func fullHD(sender: UIButton) {
+        let url = NSURL(string: infoFilm.fullHD)
+        UIApplication.sharedApplication().openURL(url!)
+    }
+    @IBAction func MP4(sender: UIButton) {
+        let url = NSURL(string: infoFilm.MP4)
+        UIApplication.sharedApplication().openURL(url!)
+    }
+    var infoFilm = RssFilm(title: "", description: "", pubDate: "", link: "", fullHD: "", MP4: "")
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        secTitleLBl.text = infoFilm.title
-        secPubDateLbl.text = infoFilm.pubDate
         
         if let url = NSURL(string: infoFilm.description) {
             let request = NSURLRequest(URL:  url)
@@ -45,8 +54,11 @@ class DeteilViewController: UIViewController, DeteilViewControllerProtocol  {
             })
             task.resume()
         }
+        secTitleLBl.text = infoFilm.title
+        secPubDateLbl.text = infoFilm.pubDate
         // Do any additional setup after loading the view.
     }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

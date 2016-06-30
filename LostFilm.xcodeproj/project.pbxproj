@@ -162,6 +162,9 @@
 		E339BC251CD1D87300844F96 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				KnownAssetTags = (
+					dfbcvb,
+				);
 				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Эрик Вильданов";

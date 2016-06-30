@@ -42,7 +42,6 @@ class TableDataSource: NSObject, UITableViewDataSource, NSURLSessionDelegate {
                 task.resume()
         }
             cell.pubDateLbl.text = item.pubDate
-        
         return cell
     }
 }

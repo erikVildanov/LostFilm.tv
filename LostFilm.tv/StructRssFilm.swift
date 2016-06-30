@@ -13,4 +13,6 @@ struct RssFilm {
     let description: String
     let pubDate: String
     let link: String
+    let fullHD: String
+    let MP4: String
 }
