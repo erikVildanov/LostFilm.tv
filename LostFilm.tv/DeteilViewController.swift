@@ -13,13 +13,8 @@ protocol DeteilViewControllerProtocol {
     func rss(rssItem: RssFilm)
 }
 
-class DeteilViewController: UIViewController, DeteilViewControllerProtocol  {
+class DeteilViewController: UIViewController, DeteilViewControllerProtocol {
     
-    
- 
-    //@IBOutlet weak var stackView: UIStackView!
-    
-    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var secTitleLBl: UILabel!
     @IBOutlet weak var secPubDateLbl: UILabel!
     @IBOutlet weak var secImageLbl: UIImageView!
@@ -37,6 +32,7 @@ class DeteilViewController: UIViewController, DeteilViewControllerProtocol  {
         let url = NSURL(string: infoFilm.MP4)
         UIApplication.sharedApplication().openURL(url!)
     }
+    
     var infoFilm = RssFilm(title: "", description: "", pubDate: "", link: "", fullHD: "", MP4: "")
     
     override func viewDidLoad() {
@@ -56,10 +52,12 @@ class DeteilViewController: UIViewController, DeteilViewControllerProtocol  {
         }
         secTitleLBl.text = infoFilm.title
         secPubDateLbl.text = infoFilm.pubDate
+        
+        
         // Do any additional setup after loading the view.
     }
     
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -68,5 +66,30 @@ class DeteilViewController: UIViewController, DeteilViewControllerProtocol  {
     func rss(rssItem: RssFilm) {
         infoFilm = rssItem
     }
+    
+//    override func viewWillAppear(animated: Bool) {
+//        secPubDateLbl.transform.tx -= view.bounds.width
+//        secTitleLBl.transform.tx -= view.bounds.width
+//        secImageLbl.alpha = 0.0
+//    }
+//    
+//    override func viewDidAppear(animated: Bool) {
+//        super.viewDidAppear(animated)
+//        
+//        UIView.animateWithDuration(0.4, delay: 0.3, options: UIViewAnimationOptions.LayoutSubviews, animations: {
+//            self.secPubDateLbl.transform.tx += self.view.bounds.width
+//            self.view.layoutIfNeeded()
+//            }, completion: nil)
+//        UIView.animateWithDuration(0.4, delay: 0.0, options: UIViewAnimationOptions.LayoutSubviews, animations: {
+//            self.secTitleLBl.transform.tx += self.view.bounds.width
+//            self.view.layoutIfNeeded()
+//            }, completion: nil)
+//        
+//        UIView.animateWithDuration(2.0, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
+//            self.secImageLbl.alpha = 1.0
+//            self.view.layoutIfNeeded()
+//            }, completion: nil)
+//        
+//    }
     
 }
