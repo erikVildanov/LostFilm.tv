@@ -63,7 +63,7 @@ class AnimationRefreshController: UIRefreshControl {
             
             k += 30
             
-            labelsArray[i].centerYAnchor.constraintEqualToAnchor(customView.centerYAnchor, constant: -7).active = true
+            labelsArray[i].centerYAnchor.constraintEqualToAnchor(customView.centerYAnchor, constant: 57).active = true
             
         }
         addSubview(customView)

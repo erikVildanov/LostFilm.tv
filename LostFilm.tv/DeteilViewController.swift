@@ -53,7 +53,6 @@ class DeteilViewController: UIViewController, DeteilViewControllerProtocol {
         secTitleLBl.text = infoFilm.title
         secPubDateLbl.text = infoFilm.pubDate
         
-        
         // Do any additional setup after loading the view.
     }
     
